@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 
 /**
  *
@@ -66,6 +67,9 @@ public class Contratos implements Serializable {
     @Column(length = 250, nullable = false)
     private String fiscal; 
     
+    @Version
+    private int version;
+    
     public Contratos(){
         this.id = 0L;
         this.anoOrigem = new Date();
@@ -81,6 +85,7 @@ public class Contratos implements Serializable {
         this.publiDou = new Date();
         this.valor = new BigDecimal(0.00);
         this.vigenciaGarantia = "";
+        this.version = 1;
                 
     }
 

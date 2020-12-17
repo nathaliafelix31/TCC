@@ -1,0 +1,9 @@
+br\edu\ifnmg\SistemaIFNMG\Persistencia\UsuarioDAO.class
+br\edu\ifnmg\SistemaIFNMG\Persistencia\CCCCDAO.class
+br\edu\ifnmg\SistemaIFNMG\Persistencia\ContratosDAO.class
+br\edu\ifnmg\SistemaIFNMG\Persistencia\PessoaDAO.class
+br\edu\ifnmg\SistemaIFNMG\Persistencia\DOFDAO.class
+br\edu\ifnmg\SistemaIFNMG\Persistencia\EmpenhosDAO.class
+br\edu\ifnmg\SistemaIFNMG\Persistencia\TransacaoDAO.class
+br\edu\ifnmg\SistemaIFNMG\Persistencia\FISCALDAO.class
+br\edu\ifnmg\SistemaIFNMG\Persistencia\DataAccessObject.class

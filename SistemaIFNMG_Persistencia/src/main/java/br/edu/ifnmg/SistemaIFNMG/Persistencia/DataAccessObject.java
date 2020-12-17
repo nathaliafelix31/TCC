@@ -16,20 +16,18 @@ import javax.persistence.Persistence;
  * @author nathalia
  */
 public abstract class DataAccessObject<T> implements Repositorio<T> {
-
+    
+    protected EntityManager manager;
     private Class type;
-
-    private EntityManager manager;
-
-    public DataAccessObject(Class type) {
+    
+    public DataAccessObject(Class type){
         var factory = Persistence.createEntityManagerFactory("UP");
         this.manager = factory.createEntityManager();
         this.type = type;
     }
 
     @Override
-    public boolean Salvar(T obj){
-        //throw new UnsupportedOperationException("Not suppotrd yet");
+    public boolean Salvar(T obj) {
         EntityTransaction transacao = this.manager.getTransaction();
         try {
             transacao.begin();
@@ -40,10 +38,13 @@ public abstract class DataAccessObject<T> implements Repositorio<T> {
             
             return true;
             
-        } catch (Exception ex) {
+        } catch(Exception ex){
             transacao.rollback();
+            System.out.println(ex);
+            
             return false;
         }
+        
     }
 
     @Override
@@ -51,29 +52,32 @@ public abstract class DataAccessObject<T> implements Repositorio<T> {
         EntityTransaction transacao = this.manager.getTransaction();
         try {
             transacao.begin();
-             this.manager.remove(obj);
+            
+            this.manager.remove(obj);
+            
             transacao.commit();
+            
             return true;
-        } catch (Exception ex) {
+            
+        } catch(Exception ex){
             transacao.rollback();
+            
             return false;
         }
     }
 
     @Override
     public T Abrir(Long id) {
-       
         try {
             
             T obj = (T)this.manager.find(this.type, id);
             
             return obj;
-        } catch (Exception ex) {
-           
-           return null;
+            
+        } catch(Exception ex){
+            return null;
         }
     }
 
     public abstract List<T> Buscar(T obj);
-
 }

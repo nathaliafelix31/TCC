@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 
 /**
  *
@@ -74,6 +75,9 @@ public class Empenhos implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date prazoFinal;
     
+    @Version
+    private int version;
+    
     public Empenhos(){
         this.id = 0L;
         this.valorTotal = new BigDecimal("0.00");
@@ -91,6 +95,7 @@ public class Empenhos implements Serializable {
         this.prazoFinal = new Date();
         this.solicitante = "";
         this.telFornecedor = 0;
+        this.version = 1;
     }
 
     public String getLicitacaoProceso() {

@@ -21,7 +21,7 @@ public class Console {
     public static void main(String[] args) {
         UsuarioRepositorio repo = new UsuarioDAO();
         Usuario u = new Usuario();
-        u.setLogin("TESTE");
+        u.setLogin("Alisson");
         u.setSenha("123");
         
         if(repo.Salvar(u)){

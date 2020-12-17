@@ -7,11 +7,18 @@ package br.edu.ifnmg.SistemaIFNMG.logicaAplicacao;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  *
@@ -19,6 +26,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="Pessoas")
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(discriminatorType= DiscriminatorType.INTEGER, name= "cargo")
 public class Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -29,9 +38,17 @@ public class Pessoa implements Serializable {
     @Column(nullable = false, length = 250)
     private String nome;
     
+    @Enumerated(EnumType.ORDINAL)
+    private Cargo cargo;
+    
+    @Version
+    private int version;
+    
     public Pessoa(){
         this.id = 0L;
         this.nome = "";
+        this.cargo = Cargo.CCCC;
+        this.version = 1;
     }
 
     public Long getId() {
@@ -48,6 +65,22 @@ public class Pessoa implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Cargo getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
     
     
