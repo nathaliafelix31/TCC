@@ -10,12 +10,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  *
  * @author Antônia
  */
 @Entity
+@Table(name = "Negociacoes")
 public class Negociacoes implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,11 +30,47 @@ public class Negociacoes implements Serializable {
     public Long getId() {
         return id;
     }
+    @ManyToOne
+    private Empenhos negociacoes;
+    
+    @Version
+    private long version;
+    
+    public Negociacoes() {
+        this.negociacoes = null;
+        this.id = 0L;
+        this.version = 1;
+    }
+    public Negociacoes(Empenhos negociacoes) {
+        this.negociacoes = negociacoes;
+        this.id = 0L;
+        this.version = 1;
+    }
+    
 
+    public Empenhos getNegociacoes() {
+        return negociacoes;
+    }
+
+    public void setNegociacoes(Empenhos negociacoes) {
+        this.negociacoes = negociacoes;
+    }
+    
+    
     public void setId(Long id) {
         this.id = id;
     }
 
+    public long getVersion() {
+        return version;
+    }
+
+    public void setVersion(long version) {
+        this.version = version;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -53,7 +93,9 @@ public class Negociacoes implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.SistemaIFNMG.logicaAplicacao.Negociacoes[ id=" + id + " ]";
+        return "Negociacoes{" + "id=" + id + ", negociacoes=" + negociacoes + '}';
     }
+
+   
     
 }
