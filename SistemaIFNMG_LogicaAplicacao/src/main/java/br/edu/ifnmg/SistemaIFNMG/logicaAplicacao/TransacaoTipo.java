@@ -9,6 +9,8 @@ package br.edu.ifnmg.SistemaIFNMG.logicaAplicacao;
  *
  * @author Antônia
  */
-public interface FiscalRepositorio extends Repositorio<FISCAL> {
-    public FISCAL AbrirPorEmail(String email);
+public enum TransacaoTipo {
+    EmpenhoC,
+    EmpenhoD,
+    Contrato
 }

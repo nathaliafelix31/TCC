@@ -11,6 +11,6 @@ package br.edu.ifnmg.SistemaIFNMG.logicaAplicacao;
  */
 public enum Cargo {
     CCCC,
-    FISCAL,
-    DOF
+    DOF,
+    FISCAL
 }

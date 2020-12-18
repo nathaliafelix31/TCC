@@ -6,17 +6,21 @@
 package br.edu.ifnmg.SistemaIFNMG.logicaAplicacao;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,30 +36,74 @@ public class Transacao implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinColumn(name= "pessoa_id", nullable = false)
     private Pessoa pessoa;
     
+    @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+    private Usuario usuario;
+    
     @Temporal(TemporalType.TIMESTAMP)
     public Date criacao;
     
-    @Column(precision = 8, scale =2)
-    public BigDecimal valorTotal;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
+            mappedBy = "transacao")
+    private List<TransacaoCadastro> cadastro;
+    
+    @Enumerated(EnumType.ORDINAL)
+    @Column(nullable = false)
+    private TransacaoTipo tipo;
     
     @Version
-    private int version;
+    private long version;
     
     public Transacao(){
         this.id = 0L;
         this.pessoa = null;
-        this.valorTotal = new BigDecimal("0.00");
         this.criacao = new Date();
+        this.cadastro = new ArrayList<>();
+        this.tipo = TransacaoTipo.Contrato;
         this.version = 1;
     }
+    
+       public Transacao(Pessoa pessoa, TransacaoTipo tipo, Usuario user) {
+        this.id = 0L;
+        this.pessoa = pessoa;
+        this.tipo = tipo;
+        this.usuario = user;
+        this.version = 1;
+         this.cadastro = new ArrayList<>();
+        this.criacao = new Date();
+    }
 
+    public List<TransacaoCadastro> getCadastro() {
+        return cadastro;
+    }
+
+    public void setCadastro(List<TransacaoCadastro> cadastro) {
+        this.cadastro = cadastro;
+    }
+
+    public TransacaoTipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TransacaoTipo tipo) {
+        this.tipo = tipo;
+    }
+
+    public long getVersion() {
+        return version;
+    }
+
+    public void setVersion(long version) {
+        this.version = version;
+    }
+
+    
     public Pessoa getPessoa() {
         return pessoa;
     }
@@ -72,15 +120,15 @@ public class Transacao implements Serializable {
         this.criacao = criacao;
     }
 
-    public BigDecimal getValorTotal() {
-        return valorTotal;
-    }
-
-    public void setValorTotal(BigDecimal valorTotal) {
-        this.valorTotal = valorTotal;
-    }
     
-    
+        public boolean add(TransacaoCadastro cadastro){
+        cadastro.setTransacao(this);
+        if(! this.cadastro.contains(cadastro)){
+            this.cadastro.add(cadastro);
+            return true;
+        }
+        return false;
+    }
     
     public Long getId() {
         return id;
@@ -89,7 +137,15 @@ public class Transacao implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+     public Usuario getUsuario() {
+        return usuario;
+    }
 
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

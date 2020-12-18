@@ -47,6 +47,12 @@ public class Usuario implements Serializable {
         this.ultimoAcesso = new Date();
     }
 
+      public Usuario(String login, String senha) {
+        this.id = 0L;
+        this.login = login;
+        this.senha = senha;
+    }
+    
     public String getLogin() {
         return login;
     }

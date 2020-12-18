@@ -57,11 +57,11 @@ import javax.persistence.Query;
         return consulta.getResultList();
     }
 
-    /*@Override
+    @Override
     public DOF AbrirPorEmail(String email) {
         Query consulta = this.manager.createQuery("select D from DOF D where D.email =:parametro");
         consulta.setParameter("parametro", email);
         return (DOF) consulta.getSingleResult();
-    }*/
+    }
     
 }

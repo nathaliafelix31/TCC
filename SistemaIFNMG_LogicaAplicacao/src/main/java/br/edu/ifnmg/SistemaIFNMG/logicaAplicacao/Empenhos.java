@@ -43,7 +43,8 @@ public class Empenhos implements Serializable {
     @Column(length = 250,  nullable = false)
     private String fornecedor;
     
-    private int telFornecedor;
+    @Column(length = 20,  nullable = false)
+    private String telFornecedor;
     
     private int prazoEntregaDias;
     
@@ -76,7 +77,7 @@ public class Empenhos implements Serializable {
     private Date prazoFinal;
     
     @Version
-    private int version;
+    private long version;
     
     public Empenhos(){
         this.id = 0L;
@@ -94,10 +95,32 @@ public class Empenhos implements Serializable {
         this.prazoEntregaDias = 0;
         this.prazoFinal = new Date();
         this.solicitante = "";
-        this.telFornecedor = 0;
+        this.telFornecedor = "";
         this.version = 1;
     }
 
+        public Empenhos(String licitacaoProcesso, String objeto,String solicitante,
+        String fornecedor, String itens, String telFornecedor,String emailFornecedor,String enderecoFornecedor,
+        int prazoEntregaDias,String nNota, String valorTotal,Date dataEmissao, Date dataEntrega, String pessoaAR, Date prazoFinal){
+        this.id = 0L;
+        this.valorTotal = new BigDecimal(valorTotal);
+        this.dataEmissao = new Date();
+        this.dataEntrega = new Date();
+        this.emailFornecedor = "";
+        this.enderecoFornecedor = "";
+        this.fornecedor = "";
+        this.itens = "";
+        this.licitacaoProceso = "";
+        this.nNota = "";
+        this.objeto = "";
+        this.pessoaAR = "";
+        this.prazoEntregaDias = 0;
+        this.prazoFinal = new Date();
+        this.solicitante = "";
+        this.telFornecedor = "";
+        this.version = 1;
+    }
+    
     public String getLicitacaoProceso() {
         return licitacaoProceso;
     }
@@ -114,7 +137,7 @@ public class Empenhos implements Serializable {
         return fornecedor;
     }
 
-    public int getTelFornecedor() {
+    public String getTelFornecedor() {
         return telFornecedor;
     }
 
@@ -174,7 +197,7 @@ public class Empenhos implements Serializable {
         this.fornecedor = fornecedor;
     }
 
-    public void setTelFornecedor(int telFornecedor) {
+    public void setTelFornecedor(String telFornecedor) {
         this.telFornecedor = telFornecedor;
     }
 
@@ -217,6 +240,14 @@ public class Empenhos implements Serializable {
     public void setPrazoFinal(Date prazoFinal) {
         this.prazoFinal = prazoFinal;
     }
+
+    public long getVersion() {
+        return version;
+    }
+
+    public void setVersion(long version) {
+        this.version = version;
+    }
   
     
  
@@ -253,7 +284,7 @@ public class Empenhos implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.SistemaIFNMG.logicaAplicacao.Empenhos[ id=" + id + " ]";
+        return objeto;
     }
     
 }

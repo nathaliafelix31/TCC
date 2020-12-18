@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  *
@@ -26,11 +27,24 @@ public class CCCC extends Pessoa implements Serializable {
     @Column(nullable = false, length = 250, unique = true)
     private String email;
    
+    
+    @Version
+    private int version;
    
-    public CCCC(){
+       public CCCC(){
        super();
+        this.setCargo(Cargo.CCCC);
         this.email = "";
+        this.version = 1;
     }
+      
+      public CCCC(String nome, String email, Cargo cargo){
+       super();
+        this.setCargo(Cargo.CCCC);
+        this.setNome(nome);
+        this.email = "";
+        this.version = 1;
+      }
 
     public String getEmail() {
         return email;

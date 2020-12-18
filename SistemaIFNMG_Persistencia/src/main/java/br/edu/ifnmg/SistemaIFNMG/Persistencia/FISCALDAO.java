@@ -57,11 +57,11 @@ import javax.persistence.Query;
         return consulta.getResultList();
     }
 
-    /*@Override
+    @Override
     public FISCAL AbrirPorEmail(String email) {
         Query consulta = this.manager.createQuery("select F from FISCAL F where F.email =:parametro");
         consulta.setParameter("parametro", email);
         return (FISCAL) consulta.getSingleResult();
-    }*/
+    }
     
 }

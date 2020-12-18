@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  *
@@ -21,16 +22,28 @@ import javax.persistence.Table;
 @DiscriminatorValue(value = "3")
 public class FISCAL extends Pessoa implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+   
     
     @Column(nullable = false, length = 250, unique = true)
      private String email;
      
+    @Version
+    private int version;
+    
       public FISCAL(){
        super();
+        this.setCargo(Cargo.FISCAL);
         this.email = "";
+        this.version = 1;
     }
       
+      public FISCAL(String nome, String email, Cargo cargo){
+       super();
+        this.setCargo(Cargo.FISCAL);
+        this.setNome(nome);
+        this.email = "";
+        this.version = 1;
+    }
       public String getEmail() {
         return email;
     }

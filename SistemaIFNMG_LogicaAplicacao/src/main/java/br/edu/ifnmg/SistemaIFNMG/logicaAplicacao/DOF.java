@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 /**
  *
@@ -26,10 +27,23 @@ public class DOF extends Pessoa implements Serializable {
     @Column(nullable = false, length = 250,unique = true)
     private String email;
     
-     public DOF(){
+    @Version
+    private int version;
+    
+      public DOF(){
        super();
+        this.setCargo(Cargo.DOF);
         this.email = "";
+        this.version = 1;
     }
+      
+      public DOF(String nome, String email, Cargo cargo){
+       super();
+        this.setCargo(Cargo.DOF);
+        this.setNome(nome);
+        this.email = "";
+        this.version = 1;
+      }
 
     public String getEmail() {
         return email;

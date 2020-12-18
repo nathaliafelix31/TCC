@@ -42,7 +42,7 @@ public class Pessoa implements Serializable {
     private Cargo cargo;
     
     @Version
-    private int version;
+    private long version;
     
     public Pessoa(){
         this.id = 0L;
@@ -75,7 +75,7 @@ public class Pessoa implements Serializable {
         this.cargo = cargo;
     }
 
-    public int getVersion() {
+    public long getVersion() {
         return version;
     }
 

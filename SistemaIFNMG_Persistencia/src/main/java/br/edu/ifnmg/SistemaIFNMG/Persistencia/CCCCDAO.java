@@ -56,11 +56,11 @@ import javax.persistence.Query;
         return consulta.getResultList();
     }
 
-    /*@Override
+    @Override
     public CCCC AbrirPorEmail(String email) {
         Query consulta = this.manager.createQuery("select C from CCCC C where C.email =:parametro");
         consulta.setParameter("parametro", email);
         return (CCCC) consulta.getSingleResult();
-    }*/
+    }
     
 }

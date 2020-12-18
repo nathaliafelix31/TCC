@@ -10,5 +10,5 @@ package br.edu.ifnmg.SistemaIFNMG.logicaAplicacao;
  * @author Antônia
  */
 public interface CCCCrepositorio extends Repositorio<CCCC>{
-    
+    public CCCC AbrirPorEmail(String Email);
 }

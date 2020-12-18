@@ -13,6 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,14 +29,16 @@ public class Contratos implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @Temporal(TemporalType.DATE)
     private Date anoOrigem;
     
-    private int contrato; 
-    private int processo; 
+    @Column(length = 70, nullable = false)
+    private String contrato; 
+    @Column(length = 70, nullable = false)
+    private String processo; 
     
     @Column(length = 250, nullable = false)
     private String objeto; 
@@ -68,12 +71,16 @@ public class Contratos implements Serializable {
     private String fiscal; 
     
     @Version
-    private int version;
+    private long version;
+    
+    @ManyToOne
+    private Usuario usuario;
+   
     
     public Contratos(){
         this.id = 0L;
         this.anoOrigem = new Date();
-        this.contrato = 0;
+        this.contrato = "";
         this.dataAssinatura = new Date();
         this.empContratada = "";
         this.finalVigencia = new Date();
@@ -81,14 +88,52 @@ public class Contratos implements Serializable {
         this.inicioVigencia = new Date();
         this.objeto = "";
         this.obs = "";
-        this.processo = 0 ;
+        this.processo = "" ;
         this.publiDou = new Date();
-        this.valor = new BigDecimal(0.00);
+        this.valor = new BigDecimal("0.00");
         this.vigenciaGarantia = "";
         this.version = 1;
                 
     }
 
+        public Contratos(Date anoOrigem,String contrato,String processo,
+        String objeto,String valor,String empContratada,Date dataAssinatura,
+        Date inicioVigencia,Date finalVigencia,Date publiDou,String obs,
+        String vigenciaGarantia,String fiscal){
+        this.id = 0L;
+        this.anoOrigem = new Date();
+        this.contrato = "";
+        this.dataAssinatura = new Date();
+        this.empContratada = "";
+        this.finalVigencia = new Date();
+        this.fiscal = "";
+        this.inicioVigencia = new Date();
+        this.objeto = "";
+        this.obs = "";
+        this.processo = "";
+        this.publiDou = new Date();
+        this.valor = new BigDecimal(valor);
+        this.vigenciaGarantia = "";
+        this.version = 1;
+                
+    }
+     public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    public long getVersion() {
+        return version;
+    }
+
+    public void setVersion(long version) {
+        this.version = version;
+    }
+
+    
+    
     public Date getAnoOrigem() {
         return anoOrigem;
     }
@@ -97,19 +142,19 @@ public class Contratos implements Serializable {
         this.anoOrigem = anoOrigem;
     }
 
-    public int getContrato() {
+    public String getContrato() {
         return contrato;
     }
 
-    public void setContrato(int contrato) {
+    public void setContrato(String contrato) {
         this.contrato = contrato;
     }
 
-    public int getProcesso() {
+    public String getProcesso() {
         return processo;
     }
 
-    public void setProcesso(int processo) {
+    public void setProcesso(String processo) {
         this.processo = processo;
     }
 
@@ -223,7 +268,7 @@ public class Contratos implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.SistemaIFNMG.logicaAplicacao.Contratos[ id=" + id + " ]";
+        return this.objeto;
     }
     
 }

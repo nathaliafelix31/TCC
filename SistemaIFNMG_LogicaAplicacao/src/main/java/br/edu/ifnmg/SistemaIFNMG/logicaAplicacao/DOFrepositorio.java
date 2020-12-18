@@ -10,5 +10,5 @@ package br.edu.ifnmg.SistemaIFNMG.logicaAplicacao;
  * @author Antônia
  */
 public interface DOFrepositorio extends Repositorio<DOF>{
-    
+    public DOF AbrirPorEmail(String Email);
 }
