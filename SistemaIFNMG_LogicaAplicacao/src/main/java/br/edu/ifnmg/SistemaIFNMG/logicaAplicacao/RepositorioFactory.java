@@ -74,4 +74,47 @@ public class RepositorioFactory {
         return usuario;
     }
     
+     public static FiscalRepositorio getFiscalRepositorio() {
+        if(fiscal == null){
+            String nomeclasse = propriedades.getProperty("FiscalRepositorio");
+            fiscal = (FiscalRepositorio) getInstancia(nomeclasse);
+        }
+        return fiscal;
+    }
+      public static CCCCrepositorio getCCCCRepositorio() {
+        if(cccc == null){
+            String nomeclasse = propriedades.getProperty("CCCCrepositorio");
+            cccc = (CCCCrepositorio) getInstancia(nomeclasse);
+        }
+        return cccc;
+    }
+       public static DOFrepositorio getDOFRepositorio() {
+        if(dof == null){
+            String nomeclasse = propriedades.getProperty("DOFrepositorio");
+            dof = (DOFrepositorio) getInstancia(nomeclasse);
+        }
+        return dof;
+    }
+        public static EmpenhosRepositorio getEmpenhoRepositorio() {
+        if(empenho == null){
+            String nomeclasse = propriedades.getProperty("EmpenhoRepositorio");
+            empenho = (EmpenhosRepositorio) getInstancia(nomeclasse);
+        }
+        return empenho;
+    }
+         public static ContratosRepositorio getContratosRepositorio() {
+        if(contratos == null){
+            String nomeclasse = propriedades.getProperty("EmpenhoRepositorio");
+            contratos = (ContratosRepositorio) getInstancia(nomeclasse);
+        }
+        return contratos;
+    }
+          public static TransacaoRepositorio getTransacaoRepositorio() {
+        if(transacao == null){
+            String nomeclasse = propriedades.getProperty("TransacaoRepositorio");
+            transacao = (TransacaoRepositorio) getInstancia(nomeclasse);
+        }
+        return transacao;
+    }
+    
 }

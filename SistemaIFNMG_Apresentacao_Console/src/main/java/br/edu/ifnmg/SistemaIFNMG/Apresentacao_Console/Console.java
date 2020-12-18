@@ -69,7 +69,7 @@ public class Console {
         repoco.Salvar(new Contratos(new Date(30-05-2015),"038/2015","23393.000273/2015-78","TERMO ADITIVO 001/2016","20000.00","EBC - EMPRESA BRASIL DE COMUNIC.",new Date(31-05-2016),new Date(01-06-2016),new Date(31-05-2020),new Date(05-07-2016),"","","Marina"));
         repoco.Salvar(new Contratos(new Date(05-04-2015),"038/2015","23393.000273/2015-78","TERMO ADITIVO 002/2017","20000.00","EBC - EMPRESA BRASIL DE COMUNIC.",new Date(05-04-2017),new Date(01-06-2017),new Date(31-05-2020),new Date(04-05-2017),"","","Marina"));
         
-        var user1 = repou.Abrir(1L);
+       /* var user1 = repou.Abrir(1L);
         var user2 = repou.Abrir(2L);
         var user3 = repou.Abrir(3L);
         
@@ -88,13 +88,13 @@ public class Console {
         var con4 = repoco.Abrir(4L);
         
           
-        TransacaoRepositorio repot = new TransacaoDAO();
+       // TransacaoRepositorio repot = new TransacaoDAO();
         
-       // Transacao t1 = new Transacao(pc1, user1);
+       // Transacao t1 = new Transacao(pc1, user1);*/
        
         
     }
-    public static void main(String[] args) {
+   public static void main(String[] args) {
         
         UsuarioRepositorio repo = RepositorioFactory.getUsuarioRepositorio();
         
