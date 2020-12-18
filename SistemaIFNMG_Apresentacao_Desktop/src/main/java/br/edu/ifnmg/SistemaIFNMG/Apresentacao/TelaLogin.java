@@ -7,6 +7,7 @@ package br.edu.ifnmg.SistemaIFNMG.Apresentacao;
 
 import br.edu.ifnmg.SistemaIFNMG.logicaAplicacao.RepositorioFactory;
 import br.edu.ifnmg.SistemaIFNMG.logicaAplicacao.UsuarioRepositorio;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -107,10 +108,10 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLoginActionPerformed
 
     private void bEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEntrarActionPerformed
-        Principal tela = new Principal();
+       /* Principal tela = new Principal();
         tela.setVisible(true);
-        this.setVisible(false);
-        /* String login = txtLogin.getText();
+        this.setVisible(false);*/
+        String login = txtLogin.getText();
         String senha = String.valueOf(txtSenha.getPassword());
         
         if(repositorio.autenticar(login, senha)){
@@ -120,7 +121,7 @@ public class TelaLogin extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Usuário ou senha estão incorretos!", "Erro",
                     JOptionPane.ERROR_MESSAGE);
-        }*/
+        }
     }//GEN-LAST:event_bEntrarActionPerformed
 
     /**

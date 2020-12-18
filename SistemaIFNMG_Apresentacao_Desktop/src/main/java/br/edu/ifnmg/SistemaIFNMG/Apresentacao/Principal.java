@@ -5,6 +5,8 @@
  */
 package br.edu.ifnmg.SistemaIFNMG.Apresentacao;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Antônia
@@ -53,6 +55,11 @@ public class Principal extends javax.swing.JFrame {
 
         btnSair.setText("Sair");
         btnSair.setToolTipText("Sair do Sistema");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,10 +69,10 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(153, 153, 153)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnEmpenhos)
-                            .addComponent(btnServidores)
-                            .addComponent(btnContratos)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnServidores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEmpenhos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnContratos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(166, 166, 166)
                         .addComponent(btnSair)))
@@ -95,6 +102,12 @@ public class Principal extends javax.swing.JFrame {
     private void btnEmpenhosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpenhosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEmpenhosActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        int resposta = JOptionPane.showConfirmDialog(null,"Deseja realmente sair do Sistema?","Confirmação",JOptionPane.YES_NO_OPTION);
+        if(resposta == JOptionPane.YES_OPTION);
+           this.setVisible(false);
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
